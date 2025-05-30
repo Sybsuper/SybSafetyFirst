@@ -6,6 +6,7 @@ import net.kyori.adventure.text.Component
 import net.kyori.adventure.text.event.ClickEvent
 import net.kyori.adventure.text.event.HoverEvent
 import org.bukkit.Location
+import org.bukkit.Material
 import org.bukkit.block.Block
 import org.bukkit.block.data.type.Bed
 import org.bukkit.event.EventHandler
@@ -49,6 +50,20 @@ object IntentionalGameDesign : Module {
     private fun explode(block: Block) {
         val world = block.world
         explosions[block.location] = System.currentTimeMillis() + 150
+        val otherBlock =
+            block.blockData.let { bedData ->
+                if (bedData !is Bed) return
+                val direction = bedData.facing
+                block.getRelative(
+                    if (bedData.part == Bed.Part.HEAD) {
+                        direction.oppositeFace
+                    } else {
+                        direction
+                    }
+                )
+            }
+        block.type = Material.AIR
+        if (otherBlock.blockData is Bed) otherBlock.type = Material.AIR
         world.createExplosion(block.location, typeSafeOptions.explosionPower, true, true)
     }
 

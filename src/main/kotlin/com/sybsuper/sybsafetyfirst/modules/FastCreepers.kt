@@ -19,11 +19,35 @@ object FastCreepers : Module {
     @Serializable
     data class FastCreepersOptions(
         override val enabled: Boolean = true,
+        /**
+         * Speed at which the creeper moves towards its target.
+         * Minecraft default is 0.25
+         */
         val speed: Double = 0.5,
+        /**
+         * Duration in ticks before the creeper explodes.
+         * Minecraft default is 30 ticks (1.5 seconds)
+         */
         val fuseDuration: Int = 15,
-        val jump: Boolean = false,
+        /**
+         * Whether the creeper should jump towards its target.
+         * If true, the creeper will jump after [jumpAfterTicks] ticks.
+         */
+        val jump: Boolean = true,
+        /**
+         * Number of ticks after which the creeper will jump towards its target.
+         * If [jump] is false, this value is ignored.
+         */
         val jumpAfterTicks: Int = 5,
+        /**
+         * Vertical velocity of the creeper when it jumps.
+         * This is a multiplier for the jump height.
+         */
         val jumpVerticalVelocity: Double = 0.5,
+        /**
+         * Horizontal velocity of the creeper when it jumps.
+         * This is a multiplier for the jump distance.
+         */
         val jumpHorizontalVelocity: Double = 0.42
     ) : ModuleOptions
 
@@ -42,7 +66,6 @@ object FastCreepers : Module {
         watchlist.removeIf { creeper -> creeper.isDead || !creeper.isValid || creeper.target !is Player }
         watchlist.forEach {
             it.run {
-                println("$fuseTicks, $maxFuseTicks, $isOnGround")
                 if (fuseTicks > typeSafeOptions.jumpAfterTicks && isOnGround) {
                     jump(it)
                 }
@@ -59,7 +82,6 @@ object FastCreepers : Module {
             jumpVelocity.normalize().multiply(typeSafeOptions.jumpHorizontalVelocity)
             jumpVelocity.y = typeSafeOptions.jumpVerticalVelocity
             entity.velocity = jumpVelocity
-            println("Jumping creeper at ${entity.location} towards ${target.location}")
         }
     }
 

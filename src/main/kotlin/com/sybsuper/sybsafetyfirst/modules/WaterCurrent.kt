@@ -19,10 +19,10 @@ object WaterCurrent : Module {
     @Serializable
     data class WaterCurrentOptions(
         override val enabled: Boolean = true,
-        val velocity: Double = 0.05,
+        val velocity: Double = 0.015,
         val directionChangeIntervalMs: Int = 10000,
         val directionChangeDegreesPerInterval: Double = 0.5,
-        val applyInterval: Long = 1
+        val applyInterval: Long = 2
     ) : ModuleOptions
 
     private val currentDirection: Vector = Vector(1, 0, 0)

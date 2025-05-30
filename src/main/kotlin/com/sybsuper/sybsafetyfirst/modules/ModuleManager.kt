@@ -18,7 +18,8 @@ object ModuleManager {
         IntentionalGameDesign,
         NoF3,
         FastCreepers,
-        WaterCurrent
+        WaterCurrent,
+        Wildfire
     )
     private val nameMap = modules.associateBy { it.name }
     private val idMap = modules.associateBy { it.id }
