@@ -1,0 +1,23 @@
+name: SybSafetyFirst
+version: '1.0.0'
+main: com.sybsuper.sybsafetyfirst.SybSafetyFirst
+api-version: '1.21'
+authors: [ Sybsuper ]
+description: Make Minecraft, just a little harder...
+website: https://sybsuper.com/
+
+
+commands:
+  sybsafetyfirst:
+    description: Main command for SybSafetyFirst plugin
+    usage: /<command>
+    aliases:
+      - ssf
+      - sybsf
+      - safetyfirst
+      - sf
+
+permissions:
+  sybsafetyfirst.admin:
+    description: Allows access to administrative commands for SybSafetyFirst
+    default: op
