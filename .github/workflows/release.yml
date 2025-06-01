@@ -49,4 +49,6 @@ jobs:
             1.18.x
             1.17.x
             1.16.x
-          files: build/libs/SybSafetyFirst-${{ github.event.release.tag_name }}-min.jar
+          files: |-
+            build/libs/SybSafetyFirst-${{ github.event.release.tag_name }}-min.jar
+            build/libs/SybSafetyFirst-${{ github.event.release.tag_name }}-all.jar
