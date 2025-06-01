@@ -24,7 +24,9 @@ jobs:
       - name: Build with Gradle
         run: gradle build -Pversion=${{ github.event.release.tag_name }} --no-daemon
       - name: Upload Release Assets
-        run: gh release upload ${{ github.event.release.tag_name }} build/libs/SybSafetyFirst-${{ github.event.release.tag_name }}-all.jar
+        run: |
+          gh release upload ${{ github.event.release.tag_name }} build/libs/SybSafetyFirst-${{ github.event.release.tag_name }}-all.jar
+          gh release upload ${{ github.event.release.tag_name }} build/libs/SybSafetyFirst-${{ github.event.release.tag_name }}-min.jar
         env:
           GH_TOKEN: ${{ github.token }}
       - name: Upload to Modrinth
@@ -47,4 +49,4 @@ jobs:
             1.18.x
             1.17.x
             1.16.x
-          files: build/libs/SybSafetyFirst-${{ github.event.release.tag_name }}-all.jar
+          files: build/libs/SybSafetyFirst-${{ github.event.release.tag_name }}-min.jar
