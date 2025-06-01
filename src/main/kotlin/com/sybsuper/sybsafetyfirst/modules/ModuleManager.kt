@@ -21,7 +21,8 @@ object ModuleManager {
         WaterCurrent,
         Wildfire,
         HeavyArmor,
-        HostileReinforcements
+        HostileReinforcements,
+        BrokenBones
     )
     private val nameMap = modules.associateBy { it.name }
     private val idMap = modules.associateBy { it.id }

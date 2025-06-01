@@ -4,7 +4,6 @@ import kotlinx.serialization.Serializable
 import org.bukkit.Bukkit
 import org.bukkit.Chunk
 import org.bukkit.Location
-import org.bukkit.entity.Arrow
 import org.bukkit.entity.Monster
 import org.bukkit.entity.Player
 import org.bukkit.entity.Projectile
@@ -64,7 +63,6 @@ object HostileReinforcements : Module {
                     )
                     Bukkit.getPluginManager().callEvent(event)
                     if (event.isCancelled) return@forEach
-                    println("Reinforcement found: ${entity.type} targeting ${player.name}")
                     entity.target = player
                     found++
                 }
