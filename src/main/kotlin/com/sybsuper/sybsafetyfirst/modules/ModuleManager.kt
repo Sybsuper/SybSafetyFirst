@@ -19,7 +19,9 @@ object ModuleManager {
         NoF3,
         FastCreepers,
         WaterCurrent,
-        Wildfire
+        Wildfire,
+        HeavyArmor,
+        HostileReinforcements
     )
     private val nameMap = modules.associateBy { it.name }
     private val idMap = modules.associateBy { it.id }
