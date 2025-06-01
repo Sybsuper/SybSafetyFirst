@@ -22,7 +22,7 @@ jobs:
           path: 'build/libs/*-all.jar'
       - name: Create Dokka Documentation
         if: github.ref == 'refs/heads/main'
-        run: gradle dokkaHtml --no-daemon
+        run: gradle dokkaGenerate --no-daemon
       - name: Publish Dokka Documentation
         if: github.ref == 'refs/heads/main'
         uses: actions/upload-pages-artifact@v3

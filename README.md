@@ -7,6 +7,7 @@ Make Minecraft, just a little harder...
 - **Water Current**: Simulates a water current that pushes players in a specific direction, with configurable speed and direction change intervals.
 - **Intentional Game Design**: You'll figure this one out soon enough.
 - **No F3**: Disables the F3 debug screen, including the visibility of the player's current coordinates.
+- **Wildfire**: Fire spreads like wildfire.
 - **More to come**: This plugin is a work in progress, with more modules planned for future releases.
 
 ## Installation

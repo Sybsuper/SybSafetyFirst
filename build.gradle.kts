@@ -7,7 +7,7 @@ plugins {
 }
 
 group = "com.sybsuper"
-version = "1.0.0"
+version = project.findProperty("version")?.toString() ?: "unknown"
 
 repositories {
     mavenCentral()
