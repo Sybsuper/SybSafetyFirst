@@ -12,6 +12,10 @@ Make Minecraft, just a little harder...
   combat.
 - **Hostile Reinforcement**: Hostile mobs will call for reinforcements when in combat with a player.
 - **Broken Bones**: Players that take fall damage will be slowed down temporarily, simulating broken bones.
+- **Player Zombies**: When a player dies, they will respawn as a zombie with the same name and equipment, the better
+  your gear, the harder it is to get it back.
+- **Hunger Delirium**: Players will experience nausea when their hunger bar is low, simulating the effects of
+  starvation.
 - **More to come**: This plugin is a work in progress, with more modules planned for future releases.
 
 ## Installation

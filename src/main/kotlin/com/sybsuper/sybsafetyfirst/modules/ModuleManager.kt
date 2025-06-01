@@ -22,7 +22,9 @@ object ModuleManager {
         Wildfire,
         HeavyArmor,
         HostileReinforcements,
-        BrokenBones
+        BrokenBones,
+        HungerDelirium,
+        PlayerZombies,
     )
     private val nameMap = modules.associateBy { it.name }
     private val idMap = modules.associateBy { it.id }
