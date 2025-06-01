@@ -1,4 +1,5 @@
 on: push
+name: Build and Deploy Documentation
 jobs:
   build:
     name: Build

@@ -1,0 +1,66 @@
+on:
+  push:
+    tags:
+      - v*
+name: Auto Release
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      - name: Get version names
+        run: |
+          TAG=${GITHUB_REF#refs/tags/}
+          VERSION=${TAG#v}
+          echo "TAG=$TAG" >> $GITHUB_ENV
+          echo "VERSION=$VERSION" >> $GITHUB_ENV
+      - name: Create Release
+        run: |
+          if [[ "${TAG}" == *-alpha* || "${TAG}" == *-beta* || "${TAG}" == *-dev* ]]; then
+            gh release create ${{ env.TAG }} --generate-notes --prerelease
+          else
+            gh release create ${{ env.TAG }} --generate-notes
+          fi
+        env:
+          GH_TOKEN: ${{ github.token }}
+      - name: Setup JDK 21
+        uses: actions/setup-java@v4
+        with:
+          java-version: '21'
+          distribution: 'temurin'
+      - name: Setup Gradle
+        uses: gradle/actions/setup-gradle@v4.4.0
+      - name: Build with Gradle
+        run: gradle build -Pversion=${{ env.VERSION }} --no-daemon
+      - name: Upload Release Assets
+        run: |
+          gh release upload ${{ env.TAG }} build/libs/SybSafetyFirst-${{ env.VERSION }}-all.jar
+          gh release upload ${{ env.TAG }} build/libs/SybSafetyFirst-${{ env.VERSION }}-min.jar
+        env:
+          GH_TOKEN: ${{ github.token }}
+      - name: Upload to Modrinth
+        uses: cloudnode-pro/modrinth-publish@v2
+        with:
+          token: ${{ secrets.MODRINTH_TOKEN }}
+          project: ${{ vars.MODRINTH_PROJECT_ID }}
+          name: ${{ github.event.release.name }}
+          version: ${{ env.TAG }}
+          changelog: See [release notes](https://github.com/${{ github.repository }}/releases/tag/${{ env.TAG }})
+          loaders: |-
+            paper
+            spigot
+            bukkit
+            purpur
+          game-versions: |-
+            1.21.x
+            1.20.x
+            1.19.x
+            1.18.x
+            1.17.x
+            1.16.x
+          files: |-
+            build/libs/SybSafetyFirst-${{ env.VERSION }}-min.jar
+            build/libs/SybSafetyFirst-${{ env.VERSION }}-all.jar
