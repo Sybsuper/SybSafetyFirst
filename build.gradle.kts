@@ -69,6 +69,10 @@ tasks {
         }
     }
 
+    shadowJar {
+        minimize()
+    }
+
     register<ProGuardTask>("proguardJar") {
         dontwarn()
         dontoptimize()

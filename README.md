@@ -8,6 +8,10 @@ Make Minecraft, just a little harder...
 - **Intentional Game Design**: You'll figure this one out soon enough.
 - **No F3**: Disables the F3 debug screen, including the visibility of the player's current coordinates.
 - **Wildfire**: Fire spreads like wildfire.
+- **Heavy Armor**: Players wearing heavy armor will experience reduced movement speed, making them more vulnerable in
+  combat.
+- **Hostile Reinforcement**: Hostile mobs will call for reinforcements when in combat with a player.
+- **Broken Bones**: Players that take fall damage will be slowed down temporarily, simulating broken bones.
 - **More to come**: This plugin is a work in progress, with more modules planned for future releases.
 
 ## Installation
