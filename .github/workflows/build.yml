@@ -13,13 +13,15 @@ jobs:
           distribution: 'temurin'
       - name: Setup Gradle
         uses: gradle/actions/setup-gradle@v4.4.0
+      - name: Set version for dev build
+        run: echo "VERSION=dev-${GITHUB_SHA::7}" >> $GITHUB_ENV
       - name: Build with Gradle
-        run: gradle build --no-daemon
+        run: gradle build -Pversion=$VERSION --no-daemon
       - name: Upload JAR
         uses: actions/upload-artifact@v4
         with:
-          name: SybSafetyFirst Downloadable JAR
-          path: 'build/libs/*-all.jar'
+          name: SybSafetyFirst-${{ env.VERSION }}-min.jar
+          path: 'build/libs/SybSafetyFirst-${{ env.VERSION }}-min.jar'
       - name: Create Dokka Documentation
         if: github.ref == 'refs/heads/main'
         run: gradle dokkaGenerate --no-daemon
