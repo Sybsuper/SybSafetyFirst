@@ -16,6 +16,9 @@ Make Minecraft, just a little harder...
   your gear, the harder it is to get it back.
 - **Hunger Delirium**: Players will experience nausea when their hunger bar is low, simulating the effects of
   starvation.
+- **Limited Crafting**: Players can only craft items that they have unlocked the recipe for.
+- **Lightining Fires**: Lightning strikes spread fire.
+- **Wrong Tools Hurt**: Using the wrong tool on a block will cause damage to the player.
 - **More to come**: This plugin is a work in progress, with more modules planned for future releases.
 
 ## Installation
