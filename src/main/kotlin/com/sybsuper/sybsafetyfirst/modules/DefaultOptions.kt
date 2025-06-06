@@ -4,5 +4,5 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 data class DefaultOptions(
-    override val enabled: Boolean = true
+    override var enabled: Boolean = true
 ) : ModuleOptions

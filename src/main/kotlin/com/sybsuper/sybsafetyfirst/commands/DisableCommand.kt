@@ -14,12 +14,27 @@ object DisableCommand : SubCommand {
         args: Array<out String>
     ): Boolean {
         val moduleId = args.getOrNull(0)?.lowercase() ?: return false
-        val module = ModuleManager.fromId(moduleId) ?: run {
+        var module = ModuleManager.fromId(moduleId) ?: run {
             sender.sendMessage("Module '$moduleId' not found.")
             return false
         }
+        module = module.currentEnabledInstance() ?: module
         ModuleManager.disableModule(module)
         sender.sendMessage("Module '${module.name}' has been disabled.")
         return true
+    }
+
+    override fun onTabComplete(
+        sender: CommandSender,
+        command: Command,
+        label: String,
+        args: Array<out String>
+    ): List<String?>? {
+        return if (args.size == 1) {
+            val needle = args[0].lowercase()
+            ModuleManager.enabledModuleIds.filter { it.startsWith(needle) }
+        } else {
+            null
+        }
     }
 }

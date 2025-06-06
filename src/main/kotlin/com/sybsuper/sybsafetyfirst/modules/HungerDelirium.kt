@@ -11,8 +11,7 @@ import org.bukkit.potion.PotionEffect
 import org.bukkit.potion.PotionEffectType
 import java.util.*
 
-object HungerDelirium : Module {
-    override val name: String = "Hunger Delirium"
+class HungerDelirium : Module {
     override val description: String = "When a player is starving, they will experience nausea."
     override var options: ModuleOptions = HungerDeliriumOptions()
     private val typeSafeOptions
@@ -21,12 +20,12 @@ object HungerDelirium : Module {
 
     @Serializable
     data class HungerDeliriumOptions(
-        override val enabled: Boolean = true,
+        override var enabled: Boolean = true,
         /**
          * The minimum food level below (less or equal to) which the player will start experiencing nausea.
          * Minecraft max food level is 20, so this value should be between 0 and 20.
          */
-        val minFoodLevel: Int = 7,
+        var minFoodLevel: Int = 7,
     ) : ModuleOptions
 
     @EventHandler(ignoreCancelled = true)

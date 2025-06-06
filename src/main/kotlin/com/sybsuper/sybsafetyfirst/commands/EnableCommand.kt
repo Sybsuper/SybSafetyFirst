@@ -18,8 +18,25 @@ object EnableCommand : SubCommand {
             sender.sendMessage("Module '$moduleId' not found.")
             return false
         }
-        ModuleManager.enableModule(module)
+        ModuleManager.enableModule(module).onFailure {
+            sender.sendMessage("Failed to enable module '${module.name}': ${it.message}")
+            return false
+        }
         sender.sendMessage("Module '${module.name}' has been enabled.")
         return true
+    }
+
+    override fun onTabComplete(
+        sender: CommandSender,
+        command: Command,
+        label: String,
+        args: Array<out String>
+    ): List<String?>? {
+        return if (args.size == 1) {
+            val needle = args[0].lowercase()
+            ModuleManager.disabledModuleIds.filter { it.startsWith(needle) }
+        } else {
+            null
+        }
     }
 }

@@ -5,8 +5,7 @@ import org.bukkit.attribute.Attribute
 import org.bukkit.event.EventHandler
 import org.bukkit.event.player.PlayerMoveEvent
 
-object HeavyArmor : Module {
-    override val name: String = "Heavy Armor"
+class HeavyArmor : Module {
     override val description: String = "The heavier the armor, the slower you move. "
     override var options: ModuleOptions = HeavyArmorOptions()
     val typeSafeOptions
@@ -17,13 +16,13 @@ object HeavyArmor : Module {
      */
     @Serializable
     data class HeavyArmorOptions(
-        override val enabled: Boolean = true,
+        override var enabled: Boolean = true,
         /**
          * The base speed of the player when not wearing any armor.
          * Minecraft default Player speed is 0.2.
          * This means that with no armor, the player will move at 0.2 blocks per tick.
          */
-        val baseSpeed: Double = 0.2,
+        var baseSpeed: Double = 0.2,
         /**
          * The speed decrease per armor defense point. See: https://minecraft.fandom.com/wiki/Armor#Defense_points
          * Max multiplier is 20 points (full diamond or netherite armor).
@@ -31,7 +30,7 @@ object HeavyArmor : Module {
          * Minecraft default Player speed is 0.2
          * This means that with full diamond armor, the player will move at 0.2 - (20 * [speedDecreasePerDefensePoint]) blocks per tick.
          */
-        val speedDecreasePerDefensePoint: Double = 0.00125,
+        var speedDecreasePerDefensePoint: Double = 0.00125,
         /**
          * The speed decrease per toughness point. See: https://minecraft.fandom.com/wiki/Armor#Armor_toughness
          * Max multiplier is 12 points (full netherite armor).
@@ -39,7 +38,7 @@ object HeavyArmor : Module {
          * Minecraft default Player speed is 0.2
          * This means that with full netherite armor, the player will move at 0.2 - (12 * [speedDecreasePerToughnessPoint]) blocks per tick.
          */
-        val speedDecreasePerToughnessPoint: Double = 0.00625,
+        var speedDecreasePerToughnessPoint: Double = 0.00625,
         ) : ModuleOptions
 
     @EventHandler(ignoreCancelled = true)

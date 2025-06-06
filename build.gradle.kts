@@ -33,6 +33,7 @@ repositories {
 }
 
 dependencies {
+    testImplementation("org.junit.jupiter:junit-jupiter:5.8.1")
     compileOnly("io.papermc.paper:paper-api:1.21.5-R0.1-SNAPSHOT")
     implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
     implementation("com.charleskorn.kaml:kaml:0.78.0")
@@ -71,6 +72,10 @@ tasks {
 
     shadowJar {
         minimize()
+    }
+
+    test {
+        useJUnitPlatform()
     }
 
     register<ProGuardTask>("proguardJar") {

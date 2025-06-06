@@ -6,8 +6,7 @@ import org.bukkit.event.EventHandler
 import org.bukkit.event.entity.EntityDamageEvent
 import org.bukkit.potion.PotionEffect
 
-object BrokenBones : Module {
-    override val name: String = "Broken Bones"
+class BrokenBones : Module {
     override val description: String =
         "Simulates broken bones when a player falls from a height. Temporarily slowing them."
     override var options: ModuleOptions = BrokenBonesOptions()
@@ -16,17 +15,17 @@ object BrokenBones : Module {
 
     @Serializable
     data class BrokenBonesOptions(
-        override val enabled: Boolean = true,
+        override var enabled: Boolean = true,
         /**
          * The duration in ticks for which the player is slowed after breaking bones.
          * Default is 5 seconds.
          */
-        val slowDurationTicks: Int = 100,
+        var slowDurationTicks: Int = 100,
         /**
          * The level of slowness to apply.
          * Default is 1, which corresponds to Slowness I.
          */
-        val slowLevel: Int = 1
+        var slowLevel: Int = 1
     ) : ModuleOptions
 
     @EventHandler(ignoreCancelled = true)

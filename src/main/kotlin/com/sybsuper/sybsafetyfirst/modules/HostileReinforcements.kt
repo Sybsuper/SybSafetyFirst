@@ -13,8 +13,7 @@ import org.bukkit.event.entity.EntityTargetEvent
 import org.bukkit.event.entity.EntityTargetLivingEntityEvent
 import kotlin.random.Random
 
-object HostileReinforcements : Module {
-    override val name: String = "Hostile Reinforcements"
+class HostileReinforcements : Module {
     override val description: String =
         "Hostile mobs call for reinforcements when it hits a player or is hit by a player."
     override var options: ModuleOptions = HostileReinforcementsOptions()
@@ -24,15 +23,15 @@ object HostileReinforcements : Module {
 
     @Serializable
     data class HostileReinforcementsOptions(
-        override val enabled: Boolean = true,
+        override var enabled: Boolean = true,
         /**
          * The number of reinforcements to redirect towards the player.
          */
-        val reinforcementCount: Int = 3,
+        var reinforcementCount: Int = 3,
         /**
          * Chunks around the entity where reinforcements are called.
          */
-        val spawnChunkRadius: Int = 3
+        var spawnChunkRadius: Int = 3
     ) : ModuleOptions
 
     @EventHandler(ignoreCancelled = true)

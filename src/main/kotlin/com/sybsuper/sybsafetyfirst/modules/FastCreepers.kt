@@ -8,8 +8,7 @@ import org.bukkit.entity.Player
 import org.bukkit.event.EventHandler
 import org.bukkit.event.entity.EntityTargetLivingEntityEvent
 
-object FastCreepers : Module {
-    override val name: String = "Fast Creepers"
+class FastCreepers : Module {
     override val description: String = "Makes creepers move and explode faster."
     override var options: ModuleOptions = FastCreepersOptions()
     val typeSafeOptions
@@ -18,37 +17,37 @@ object FastCreepers : Module {
 
     @Serializable
     data class FastCreepersOptions(
-        override val enabled: Boolean = true,
+        override var enabled: Boolean = true,
         /**
          * Speed at which the creeper moves towards its target.
          * Minecraft default is 0.25
          */
-        val speed: Double = 0.5,
+        var speed: Double = 0.5,
         /**
          * Duration in ticks before the creeper explodes.
          * Minecraft default is 30 ticks (1.5 seconds)
          */
-        val fuseDuration: Int = 15,
+        var fuseDuration: Int = 15,
         /**
          * Whether the creeper should jump towards its target.
          * If true, the creeper will jump after [jumpAfterTicks] ticks.
          */
-        val jump: Boolean = true,
+        var jump: Boolean = true,
         /**
          * Number of ticks after which the creeper will jump towards its target.
          * If [jump] is false, this value is ignored.
          */
-        val jumpAfterTicks: Int = 5,
+        var jumpAfterTicks: Int = 5,
         /**
          * Vertical velocity of the creeper when it jumps.
          * This is a multiplier for the jump height.
          */
-        val jumpVerticalVelocity: Double = 0.5,
+        var jumpVerticalVelocity: Double = 0.5,
         /**
          * Horizontal velocity of the creeper when it jumps.
          * This is a multiplier for the jump distance.
          */
-        val jumpHorizontalVelocity: Double = 0.42
+        var jumpHorizontalVelocity: Double = 0.42
     ) : ModuleOptions
 
     @EventHandler(ignoreCancelled = true)

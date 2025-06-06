@@ -14,12 +14,31 @@ object ReloadCommand : SubCommand {
         args: Array<out String>
     ): Boolean {
         val moduleId = args.getOrNull(0)?.lowercase() ?: return false
-        val module = ModuleManager.fromId(moduleId) ?: run {
+        var module = ModuleManager.fromId(moduleId) ?: run {
             sender.sendMessage("Module '$moduleId' not found.")
             return false
         }
-        ModuleManager.reloadModule(module)
+        module = module.currentEnabledInstance() ?: module
+        ModuleManager.reloadModule(module).onFailure {
+            sender.sendMessage("Failed to reload module '${module.name}': ${it.message}")
+            it.printStackTrace()
+            return false
+        }
         sender.sendMessage("Module '${module.name}' has been reloaded.")
         return true
+    }
+
+    override fun onTabComplete(
+        sender: CommandSender,
+        command: Command,
+        label: String,
+        args: Array<out String>
+    ): List<String?>? {
+        return if (args.size == 1) {
+            val needle = args[0].lowercase()
+            ModuleManager.modules.map { it.id }.filter { it.startsWith(needle) }
+        } else {
+            null
+        }
     }
 }

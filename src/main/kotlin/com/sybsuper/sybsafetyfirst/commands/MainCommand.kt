@@ -54,14 +54,20 @@ object MainCommand : CommandExecutor, TabCompleter {
     ): List<String?>? {
         if (!sender.hasPermission("sybsafetyfirst.admin")) return null
         val allowedCommands = subcommands.filter {
-            it.permission?.let { perm -> sender.hasPermission(perm) } ?: true
+            sender.hasPermission(it.permission)
         }
         return if (args.isEmpty()) {
             allowedCommands.map { it.name.lowercase() }
         } else {
-            val lastArg = args.lastOrNull()?.lowercase().orEmpty()
-            allowedCommands.filter { it.name.lowercase().startsWith(lastArg) }
-                .map { it.name }
+            if (args.size == 1) {
+                val needle = args[0].lowercase()
+                allowedCommands.filter { it.name.lowercase().startsWith(needle) }
+                    .map { it.name }
+            } else if (args.size > 1) {
+                val subcommandName = args[0].lowercase()
+                val subcommand = allowedCommands.find { it.name.equals(subcommandName, ignoreCase = true) }
+                subcommand?.onTabComplete(sender, command, label, args.drop(1).toTypedArray())
+            } else null
         }
     }
 }

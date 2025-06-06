@@ -9,8 +9,7 @@ import org.bukkit.inventory.EquipmentSlot
 import org.bukkit.inventory.ItemStack
 import kotlin.random.Random
 
-object PlayerZombies : Module {
-    override val name: String = "Player Zombies"
+class PlayerZombies : Module {
     override val description: String = "When a player dies, they will turn into a zombie."
     override var options: ModuleOptions = PlayerZombiesOptions()
     val typeSafeOptions
@@ -18,22 +17,22 @@ object PlayerZombies : Module {
 
     @Serializable
     data class PlayerZombiesOptions(
-        override val enabled: Boolean = true,
+        override var enabled: Boolean = true,
         /**
          * Whether the zombie will be a zombie villager (true) or a regular zombie (false).
          */
-        val zombieVillager: Boolean = true,
+        var zombieVillager: Boolean = true,
         /**
          * The chance that the zombie will be a baby zombie.
          * Value should be between 0.0 and 1.0, where 1.0 means 100% chance.
          */
-        val babyChance: Float = 0.1f,
+        var babyChance: Float = 0.1f,
         /**
          * Drop chance for the zombie's equipment. Chance for each piece of equipment to be dropped.
          * When set to 50% on average, half of the equipment will be dropped.
          * Value should be between 0.0 and 1.0, where 1.0 means 100% chance.
          */
-        val dropEquipmentChance: Float = 0.66f,
+        var dropEquipmentChance: Float = 0.66f,
     ) : ModuleOptions
 
     @EventHandler(ignoreCancelled = true)

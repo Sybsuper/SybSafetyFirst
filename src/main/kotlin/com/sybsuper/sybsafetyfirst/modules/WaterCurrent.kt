@@ -8,8 +8,7 @@ import kotlin.math.cos
 import kotlin.math.hypot
 import kotlin.math.sin
 
-object WaterCurrent : Module {
-    override val name: String = "Water Current"
+class WaterCurrent : Module {
     override val description: String =
         "Makes water currents more \"realistic\". Pushes entities in water towards the global current direction."
     override var options: ModuleOptions = WaterCurrentOptions()
@@ -18,11 +17,27 @@ object WaterCurrent : Module {
 
     @Serializable
     data class WaterCurrentOptions(
-        override val enabled: Boolean = true,
-        val velocity: Double = 0.015,
-        val directionChangeIntervalMs: Int = 10000,
-        val directionChangeDegreesPerInterval: Double = 0.5,
-        val applyInterval: Long = 2
+        override var enabled: Boolean = true,
+        /**
+         * The velocity at which entities in water are pushed.
+         */
+        var velocity: Double = 0.015,
+        /**
+         * The interval in milliseconds at which the direction of the current changes.
+         */
+        var directionChangeIntervalMs: Int = 10000,
+        /**
+         * The number of degrees the current direction changes per interval.
+         */
+        var directionChangeDegreesPerInterval: Double = 0.5,
+        /**
+         * The interval in ticks at which the current is applied to entities.
+         * 20 ticks = 1 second, so 2 means 10 times per second.
+         * Min: 1 tick, max: infinity.
+         * Higher values mean less frequent updates, which can reduce server load but may make the current feel more "stuttering".
+         * Higher values also mean that the player has more control over their movement, since setting the velocity overrides their movement.
+         */
+        var applyInterval: Long = 2
     ) : ModuleOptions
 
     private val currentDirection: Vector = Vector(1, 0, 0)

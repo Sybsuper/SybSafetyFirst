@@ -11,8 +11,7 @@ import org.bukkit.event.block.BlockSpreadEvent
 import org.bukkit.util.Vector
 import kotlin.random.Random
 
-object Wildfire : Module {
-    override val name: String = "Wildfires"
+class Wildfire : Module {
     override val description: String = "Fire spreads like wildfire, consuming everything in its path. Be careful!"
     override var options: ModuleOptions = WildfireOptions()
     val typeSafeOptions
@@ -20,22 +19,22 @@ object Wildfire : Module {
 
     @Serializable
     data class WildfireOptions(
-        override val enabled: Boolean = true,
+        override var enabled: Boolean = true,
         /**
          * Chance for fire to spread to adjacent blocks.
          */
-        val fireSpreadChance: Double = 0.5,
+        var fireSpreadChance: Double = 0.5,
         /**
          * Velocity at which the fire jumps to nearby blocks.
          */
-        val jumpVelocity: Double = 0.4,
+        var jumpVelocity: Double = 0.4,
         /**
          * Number of fire blocks that can be created from a single fire block.
          * Note: this is in addition to the original fire block that spreads.
          * For example, if this is set to 2, this means that a single fire spread leads to 3 fire blocks being added.
          * Also note: this scales the wildfire exponentially, so be careful with this value.
          */
-        val amountOfFires: Int = 2,
+        var amountOfFires: Int = 2,
     ) : ModuleOptions
 
     @EventHandler(ignoreCancelled = true)

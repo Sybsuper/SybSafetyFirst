@@ -4,8 +4,7 @@ import com.sybsuper.sybsafetyfirst.utils.delay
 import org.bukkit.event.EventHandler
 import org.bukkit.event.player.PlayerItemConsumeEvent
 
-object HungryMode : Module {
-    override val name: String = "Hungry Mode"
+class HungryMode : Module {
     override val description: String = "Makes players more hungry."
     override var options: ModuleOptions = DefaultOptions()
 

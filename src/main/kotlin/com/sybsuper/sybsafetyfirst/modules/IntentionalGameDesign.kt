@@ -16,8 +16,7 @@ import org.bukkit.event.entity.PlayerDeathEvent
 import org.bukkit.event.player.PlayerBedEnterEvent
 import org.bukkit.event.player.PlayerInteractEvent
 
-object IntentionalGameDesign : Module {
-    override val name: String = "Intentional Game Design"
+class IntentionalGameDesign : Module {
     override val description: String = "Beds explode in all dimensions."
     override var options: ModuleOptions = IntentionalGameDesignOptions()
     val typeSafeOptions
@@ -26,7 +25,12 @@ object IntentionalGameDesign : Module {
 
     @Serializable
     data class IntentionalGameDesignOptions(
-        override val enabled: Boolean = true, val explosionPower: Float = 5f
+        override var enabled: Boolean = true,
+        /**
+         * The power of the explosion caused by the bed.
+         * Minecraft default for bed explosions is 5.0.
+         */
+        var explosionPower: Float = 5f
     ) : ModuleOptions
 
     private val explosions = mutableMapOf<Location, Long>()

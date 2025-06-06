@@ -3,8 +3,7 @@ package com.sybsuper.sybsafetyfirst.modules
 import org.bukkit.Bukkit
 import org.bukkit.GameRule
 
-object NoF3 : Module {
-    override val name: String = "No F3"
+class NoF3 : Module {
     override val description: String = "Disables the F3 debug screen."
     override var options: ModuleOptions = DefaultOptions()
 
