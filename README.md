@@ -19,6 +19,7 @@ Make Minecraft, just a little harder...
 - **Limited Crafting**: Players can only craft items that they have unlocked the recipe for.
 - **Lightining Fires**: Lightning strikes spread fire.
 - **Wrong Tools Hurt**: Using the wrong tool on a block will cause damage to the player.
+- **Nether Portals Destabilize**: Nether portals have a chance to destabilize, causing the portal destination to move.
 - **More to come**: This plugin is a work in progress, with more modules planned for future releases.
 
 ## Installation
