@@ -22,6 +22,7 @@ Make Minecraft, just a little harder...
 - **Nether Portals Destabilize**: Nether portals have a chance to destabilize, causing the portal destination to move.
 - **Skill-based Inventory**: Inventory slots are locked until the player reaches a certain level, making early game
   inventory management more challenging.
+- **Bad Air Caves**: Sometimes, poisonous gas will fill caves, causing damage to players.
 - **More to come**: This plugin is a work in progress, with more modules planned for future releases.
 
 ## Installation
