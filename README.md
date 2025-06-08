@@ -17,9 +17,11 @@ Make Minecraft, just a little harder...
 - **Hunger Delirium**: Players will experience nausea when their hunger bar is low, simulating the effects of
   starvation.
 - **Limited Crafting**: Players can only craft items that they have unlocked the recipe for.
-- **Lightining Fires**: Lightning strikes spread fire.
+- **Lightning Fires**: Lightning strikes spread fire.
 - **Wrong Tools Hurt**: Using the wrong tool on a block will cause damage to the player.
 - **Nether Portals Destabilize**: Nether portals have a chance to destabilize, causing the portal destination to move.
+- **Skill-based Inventory**: Inventory slots are locked until the player reaches a certain level, making early game
+  inventory management more challenging.
 - **More to come**: This plugin is a work in progress, with more modules planned for future releases.
 
 ## Installation

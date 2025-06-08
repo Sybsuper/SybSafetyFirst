@@ -31,6 +31,7 @@ object ModuleManager {
         LightningFires(),
         WrongToolsHurt(),
         NetherPortalsDestabilize(),
+        SkillBasedInventory(),
     )
     private val currentModuleInstances = modules.associateBy { it.id }.toMutableMap()
     private val nameMap = modules.associateBy { it.name }
@@ -90,27 +91,32 @@ object ModuleManager {
     private fun loadOptions(module: Module): ModuleOptions {
         val moduleConfig = moduleConfigFile(module)
         return runCatching {
-            Yaml.default.decodeFromStream(
+            val stream = moduleConfig.inputStream()
+            val result = Yaml.default.decodeFromStream(
                 module.options::class.serializer(),
-                moduleConfig.inputStream()
+                stream
             )
+            stream.close()
+            result
         }.getOrElse { error ->
             SybSafetyFirst.instance.logger.warning("Failed to load options for module ${module.name}: ${error.message}")
             // Use the default options defined in the module
             val defaultOptions = module.options
             defaultOptions.also {
                 runCatching {
+                    val stream = moduleConfig.outputStream()
                     Yaml.default.encodeToStream<ModuleOptions>(
                         it::class.serializer() as KSerializer<in ModuleOptions>,
                         it,
-                        moduleConfig.outputStream()
+                        stream
                     )
+                    stream.close()
                 }.onFailure { error ->
                     SybSafetyFirst.instance.logger.warning("Failed to save default options for module ${module.name}: ${error.message}")
                 }
             }
         }.also {
-            SybSafetyFirst.instance.logger.finest("Loaded options for module ${module.name}: $it")
+            SybSafetyFirst.instance.logger.info("Loaded options for module ${module.name}: $it")
         }
     }
 
@@ -128,11 +134,13 @@ object ModuleManager {
     fun saveModuleOptions(module: Module) {
         val moduleConfig = moduleConfigFile(module)
         runCatching {
+            val stream = moduleConfig.outputStream()
             Yaml.default.encodeToStream<ModuleOptions>(
                 module.options::class.serializer() as KSerializer<in ModuleOptions>,
                 module.options,
-                moduleConfig.outputStream()
+                stream
             )
+            stream.close()
         }.onFailure { error ->
             SybSafetyFirst.instance.logger.warning("Failed to save options for module ${module.name}: ${error.message}")
         }
