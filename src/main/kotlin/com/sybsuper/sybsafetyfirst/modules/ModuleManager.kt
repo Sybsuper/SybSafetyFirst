@@ -33,6 +33,7 @@ object ModuleManager {
         NetherPortalsDestabilize(),
         SkillBasedInventory(),
         BadAirCaves(),
+        BabyCreepers()
     )
     private val currentModuleInstances = modules.associateBy { it.id }.toMutableMap()
     private val nameMap = modules.associateBy { it.name }
