@@ -6,6 +6,8 @@ import org.bukkit.command.CommandSender
 
 object DisableCommand : SubCommand {
     override val name: String = "disable"
+    override val description: String = "Disables a module."
+    override val usage: String = super.usage + " <module>"
 
     override fun onCommand(
         sender: CommandSender,

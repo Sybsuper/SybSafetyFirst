@@ -6,6 +6,8 @@ import org.bukkit.command.CommandSender
 
 object ReloadCommand : SubCommand {
     override val name: String = "reload"
+    override val description: String = "Reloads a module."
+    override val usage: String = super.usage + " <module>"
 
     override fun onCommand(
         sender: CommandSender,

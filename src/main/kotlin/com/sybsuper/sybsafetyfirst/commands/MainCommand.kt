@@ -9,7 +9,14 @@ import org.bukkit.command.TabCompleter
 
 object MainCommand : CommandExecutor, TabCompleter {
     val subcommands =
-        listOf<SubCommand>(InfoCommand, HelpCommand, EnableCommand, DisableCommand, ReloadCommand, ModulesCommand)
+        listOf(
+            InfoCommand,
+            HelpCommand,
+            EnableCommand,
+            DisableCommand,
+            ReloadCommand,
+            ModulesCommand
+        )
 
     override fun onCommand(
         sender: CommandSender,

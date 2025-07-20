@@ -14,7 +14,7 @@ interface SubCommand : CommandExecutor, TabCompleter {
         get() = "No description provided."
 
     val usage: String
-        get() = "/sybsafetyfirst ${this::class.simpleName?.lowercase() ?: "unknown"}"
+        get() = "/sybsafetyfirst $name"
 
     override fun onTabComplete(
         sender: CommandSender,

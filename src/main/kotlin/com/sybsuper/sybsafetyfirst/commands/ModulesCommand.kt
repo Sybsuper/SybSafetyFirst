@@ -6,6 +6,7 @@ import org.bukkit.command.CommandSender
 
 object ModulesCommand : SubCommand {
     override val name: String = "modules"
+    override val description: String = "Lists all available modules and their status."
 
     override fun onCommand(
         sender: CommandSender,
