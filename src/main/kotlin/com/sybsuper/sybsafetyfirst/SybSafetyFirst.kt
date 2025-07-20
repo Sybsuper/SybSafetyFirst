@@ -1,5 +1,6 @@
 package com.sybsuper.sybsafetyfirst
 
+import com.sybsuper.bstats.Metrics
 import com.sybsuper.sybsafetyfirst.commands.MainCommand
 import com.sybsuper.sybsafetyfirst.modules.ModuleManager
 import org.bukkit.Bukkit
@@ -15,6 +16,8 @@ class SybSafetyFirst : JavaPlugin() {
         }
         // initialize the module manager
         ModuleManager
+        // enable bStats metrics
+        Metrics(this, 26582)
     }
 
     override fun onDisable() {
