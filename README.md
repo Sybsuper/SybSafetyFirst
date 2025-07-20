@@ -3,8 +3,14 @@
 Make Minecraft, just a little harder...
 
 ## Features
-- **Fast Creepers**: Creepers move faster and can jump, making them more challenging to deal with. They also have a configurable fuse duration.
-- **Water Current**: Simulates a water current that pushes players in a specific direction, with configurable speed and direction change intervals.
+
+SybSafetyFirst is a Minecraft plugin that adds various modules to enhance the game's difficulty.
+The following modules are currently available:
+
+- **Fast Creepers**: Creepers move faster and can jump, making them more challenging to deal with. They also have a
+  configurable fuse duration.
+- **Water Current**: Simulates a water current that pushes players in a specific direction, with configurable speed and
+  direction change intervals.
 - **Intentional Game Design**: You'll figure this one out soon enough.
 - **No F3**: Disables the F3 debug screen, including the visibility of the player's current coordinates.
 - **Wildfire**: Fire spreads like wildfire.
@@ -23,7 +29,15 @@ Make Minecraft, just a little harder...
 - **Skill-based Inventory**: Inventory slots are locked until the player reaches a certain level, making early game
   inventory management more challenging.
 - **Bad Air Caves**: Sometimes, poisonous gas will fill caves, causing damage to players.
+- **Baby Creatures**: Any LivingEntity can spawn as a baby, babies are faster and smaller than their adult counterparts.
 - **More to come**: This plugin is a work in progress, with more modules planned for future releases.
+
+## Configuration
+
+Each module can be toggled on or off and be configured to your liking the configuration files,
+allowing server administrators to customize the gameplay experience.
+Documentation for each module's configuration can be found
+[here](https://sybsuper.github.io/SybSafetyFirst/-syb-safety-first/com.sybsuper.sybsafetyfirst.modules/-module-options/index.html).
 
 ## Installation
 
@@ -32,23 +46,37 @@ Make Minecraft, just a little harder...
 3. Start or restart your server.
 4. Configure the modules as needed in the `plugins/SybSafetyFirst/modules` directory.
 
+## Commands
+
+The following commands are available to server administrators:
+
+- `/sf reload <module>` - Reloads the module, useful for configuration changes.
+- `/sf enable/disable <module>` - Enables or disables the module on or off.
+- `/sf modules` - Lists all available modules and their current status.
+
 ## Development
 
 ### Requirements
+
 - Kotlin
 - Java
 - Gradle
 - Minecraft server (for testing)
 
 ### Building the Project
+
 Run the following command to build the project:
+
 ```bash
 ./gradlew build
 ```
+
 Or run a test server with:
+
 ```bash
 ./gradlew runServer
 ```
 
 ## License
-This project is licensed under the MIT License. See the `LICENSE` file for details.
+
+This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
