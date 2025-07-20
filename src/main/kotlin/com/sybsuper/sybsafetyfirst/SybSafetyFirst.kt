@@ -6,10 +6,10 @@ import org.bukkit.Bukkit
 import org.bukkit.plugin.java.JavaPlugin
 
 class SybSafetyFirst : JavaPlugin() {
-
     override fun onEnable() {
         instance = this
-        val pluginCommand = Bukkit.getPluginCommand("sybsafetyfirst")?.run {
+        namespace = this.name.lowercase()
+        Bukkit.getPluginCommand("sybsafetyfirst")?.run {
             setExecutor(MainCommand)
             tabCompleter = MainCommand
         }
@@ -21,6 +21,18 @@ class SybSafetyFirst : JavaPlugin() {
     }
 
     companion object {
+        /**
+         * The singleton instance of the plugin.
+         * This is initialized in the onEnable method.
+         */
         lateinit var instance: SybSafetyFirst
+            private set
+
+        /**
+         * The namespace for the plugin, used for configuration and data storage.
+         * This is the plugin's name in lowercase.
+         */
+        lateinit var namespace: String
+            private set
     }
 }
