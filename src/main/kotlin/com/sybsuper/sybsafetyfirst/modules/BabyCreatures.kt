@@ -22,6 +22,11 @@ class BabyCreatures : Module {
     @Serializable
     data class BabyCreaturesOptions(
         override var enabled: Boolean = true,
+        /**
+         * Map of creature types to their options.
+         * This map is automatically populated with all living entities that are not ageable.
+         * Remove a type from this map to disable baby spawning for that creature.
+         */
         var creatures: Map<EntityType, CreatureOptions> = EntityType.entries.filter { type ->
             type.entityClass?.let {
                 LivingEntity::class.java.isAssignableFrom(it) && !Ageable::class.java.isAssignableFrom(it)
