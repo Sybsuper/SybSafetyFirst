@@ -30,6 +30,7 @@ The following modules are currently available:
   inventory management more challenging.
 - **Bad Air Caves**: Sometimes, poisonous gas will fill caves, causing damage to players.
 - **Baby Creatures**: Any LivingEntity can spawn as a baby, babies are faster and smaller than their adult counterparts.
+- **Expensive Trades**: Villager trades are more expensive, making it harder to obtain valuable items.
 - **More to come**: This plugin is a work in progress, with more modules planned for future releases.
 
 ## Configuration

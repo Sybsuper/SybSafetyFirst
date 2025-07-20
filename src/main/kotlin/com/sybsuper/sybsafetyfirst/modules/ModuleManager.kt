@@ -33,7 +33,8 @@ object ModuleManager {
         NetherPortalsDestabilize(),
         SkillBasedInventory(),
         BadAirCaves(),
-        BabyCreatures()
+        BabyCreatures(),
+        ExpensiveTrades()
     )
     private val currentModuleInstances = modules.associateBy { it.id }.toMutableMap()
     private val nameMap = modules.associateBy { it.name }
