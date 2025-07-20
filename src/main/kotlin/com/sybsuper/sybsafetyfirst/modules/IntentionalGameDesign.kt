@@ -15,6 +15,7 @@ import org.bukkit.event.entity.EntityDamageEvent
 import org.bukkit.event.entity.PlayerDeathEvent
 import org.bukkit.event.player.PlayerBedEnterEvent
 import org.bukkit.event.player.PlayerInteractEvent
+import kotlin.random.Random
 
 class IntentionalGameDesign : Module {
     override val description: String = "Beds explode in all dimensions."
@@ -30,7 +31,11 @@ class IntentionalGameDesign : Module {
          * The power of the explosion caused by the bed.
          * Minecraft default for bed explosions is 5.0.
          */
-        var explosionPower: Float = 5f
+        var explosionPower: Float = 5f,
+        /**
+         * Chance of a bed exploding when a player interacts with it.
+         */
+        var explosionChance: Float = 1f,
     ) : ModuleOptions
 
     private val explosions = mutableMapOf<Location, Long>()
@@ -47,6 +52,7 @@ class IntentionalGameDesign : Module {
         val block = event.clickedBlock
         if (block?.blockData !is Bed) return
         if (!block.world.isBedWorks) return
+        if (Random.nextFloat() > typeSafeOptions.explosionChance) return
         event.isCancelled = true
         explode(block)
     }
