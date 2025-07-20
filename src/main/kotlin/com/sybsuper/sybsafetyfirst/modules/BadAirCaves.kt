@@ -21,10 +21,17 @@ class BadAirCaves : Module {
     @Serializable
     data class BadAirCavesOptions(
         override var enabled: Boolean = true,
+        /**
+         * Damage amount per second to apply to players in the gas cloud.
+         */
         var damageAmount: Double = 1.0,
+        /**
+         * If true, players will get the poison effect when they are in the gas cloud.
+         * If false, they will only take damage.
+         */
         var applyPoison: Boolean = true,
         /**
-         * If true, the gas will be considered heavy, meaning it will stay close to the ground.
+         * If true, the gas will be considered heavy, meaning it will stay closer to the ground.
          */
         var heavyGas: Boolean = true,
         /**
@@ -37,14 +44,49 @@ class BadAirCaves : Module {
         /**
          * The distance the gas can spread from the edge of the gas cloud.
          * Should not be higher than the gas cloud radius, or there will be gaps in the gas cloud.
+         * @see [applyPoison]
          */
         var poisonDurationTicks: Int = 100,
+        /**
+         * The level of poison effect to apply to players in the gas cloud.
+         * @see [applyPoison]
+         */
         var poisonLevel: Int = 1,
+        /**
+         * The particle to use for the gas cloud.
+         */
         var particle: Particle = Particle.WITCH,
+        /**
+         * The number of particles to spawn per cloud part.
+         * A cloud is made up of multiple parts, each part is a point in the cloud.
+         * This controls how many particles are spawned per point.
+         */
         var particleCountPerCloudPart: Int = 16,
+        /**
+         * The chance per second that a new gas cloud could be created if a player is in a cave at the time.
+         * This is a value between 0 and 1, where 1 means every player will create a cloud every second.
+         * A value of 0.001 means that on average, one cloud will be created every 1000 seconds per player. Which is around 17 minutes.
+         */
         var creationChancePerSecond: Double = 0.001,
+        /**
+         * The maximum number of points in a gas cloud.
+         * This is the maximum number of particles that will be spawned for a single cloud.
+         * If the cloud reaches this size, it will not spread anymore.
+         * Greater values will increase the size of the gas cloud, but also increase server load.
+         */
         var cloudMaxSize: Int = 300,
+        /**
+         * The range in blocks at which particles will be visible to players.
+         * This is used to limit the number of particles sent to players.
+         * A value of 32 means that particles will only be sent to players within 32 blocks of the cloud.
+         */
         var particleVisibilityRange: Float = 32f,
+        /**
+         * The number of times a gas cloud will spread per second.
+         * This is the number of new points that will be added to the cloud every second.
+         * A value of 5 means that 5 new points will be added to the cloud every second.
+         * Greater values will increase the spread speed of the gas cloud, but also increase server load.
+         */
         var spreadsPerCloudPerSecond: Int = 5,
         /**
          * Set to 0 to disable decay.
