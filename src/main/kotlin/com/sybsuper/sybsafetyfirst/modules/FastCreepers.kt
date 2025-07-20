@@ -1,8 +1,11 @@
 package com.sybsuper.sybsafetyfirst.modules
 
+import com.sybsuper.sybsafetyfirst.SybSafetyFirst
 import kotlinx.serialization.Serializable
 import org.bukkit.Bukkit
+import org.bukkit.NamespacedKey
 import org.bukkit.attribute.Attribute
+import org.bukkit.attribute.AttributeModifier
 import org.bukkit.entity.Creeper
 import org.bukkit.entity.Player
 import org.bukkit.event.EventHandler
@@ -19,10 +22,9 @@ class FastCreepers : Module {
     data class FastCreepersOptions(
         override var enabled: Boolean = true,
         /**
-         * Speed at which the creeper moves towards its target.
-         * Minecraft default is 0.25
+         * Multiplier for the creeper's movement speed.
          */
-        var speed: Double = 0.5,
+        var speedMultiplier: Double = 2.0,
         /**
          * Duration in ticks before the creeper explodes.
          * Minecraft default is 30 ticks (1.5 seconds)
@@ -57,7 +59,16 @@ class FastCreepers : Module {
         val target = event.target
         if (target !is Player) return
         entity.maxFuseTicks = typeSafeOptions.fuseDuration
-        entity.getAttribute(Attribute.MOVEMENT_SPEED)?.baseValue = typeSafeOptions.speed
+        entity.getAttribute(Attribute.MOVEMENT_SPEED)?.addModifier(
+            AttributeModifier(
+                NamespacedKey(
+                    SybSafetyFirst.namespace,
+                    "fast_creeper_speed_modifier"
+                ),
+                typeSafeOptions.speedMultiplier - 1,
+                AttributeModifier.Operation.MULTIPLY_SCALAR_1
+            )
+        )
         watchlist.add(entity)
     }
 
@@ -87,7 +98,7 @@ class FastCreepers : Module {
     override fun onEnable() {
         if (typeSafeOptions.jump) {
             Bukkit.getScheduler().runTaskTimer(
-                com.sybsuper.sybsafetyfirst.SybSafetyFirst.instance,
+                SybSafetyFirst.instance,
                 task,
                 0L,
                 1L
@@ -97,7 +108,7 @@ class FastCreepers : Module {
 
     override fun onDisable() {
         if (typeSafeOptions.jump) {
-            Bukkit.getScheduler().cancelTasks(com.sybsuper.sybsafetyfirst.SybSafetyFirst.instance)
+            Bukkit.getScheduler().cancelTasks(SybSafetyFirst.instance)
         }
     }
 }
