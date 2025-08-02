@@ -32,6 +32,8 @@ The following modules are currently available:
 - **Baby Creatures**: Any LivingEntity can spawn as a baby, babies are faster and smaller than their adult counterparts.
 - **Expensive Trades**: Villager trades are more expensive, making it harder to obtain valuable items.
 - **Smaller Stack Sizes**: Item stack sizes are reduced, making inventory management more challenging.
+- **Inconsistent Redstone**: Redstone components may not work as expected, adding unpredictability to redstone
+  contraptions.
 - **More to come**: This plugin is a work in progress, with more modules planned for future releases.
 
 ## Configuration
