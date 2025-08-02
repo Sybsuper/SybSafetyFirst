@@ -34,6 +34,7 @@ The following modules are currently available:
 - **Smaller Stack Sizes**: Item stack sizes are reduced, making inventory management more challenging.
 - **Inconsistent Redstone**: Redstone components may not work as expected, adding unpredictability to redstone
   contraptions.
+- **No F5**: Disables the F5 third-person view.
 - **More to come**: This plugin is a work in progress, with more modules planned for future releases.
 
 ## Configuration
