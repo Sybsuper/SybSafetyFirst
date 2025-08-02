@@ -35,6 +35,7 @@ The following modules are currently available:
 - **Inconsistent Redstone**: Redstone components may not work as expected, adding unpredictability to redstone
   contraptions.
 - **No F5**: Disables the F5 third-person view.
+- **No Sweeping Damage**: Disables sweeping damage, making combat with multiple mobs more challenging.
 - **More to come**: This plugin is a work in progress, with more modules planned for future releases.
 
 ## Configuration
